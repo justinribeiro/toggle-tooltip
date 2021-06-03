@@ -14,7 +14,15 @@ To see the tooltip in action within JAWS 2020, see
 https://www.youtube.com/watch?v=PNH0RTB9alg
 
 ## Example
+Install the component:
+```sh
+npm i @justinribeiro/toggle-tooltip
+# or
+yarn add @justinribeiro/toggle-tooltip
 ```
+
+Fire it up:
+```html
 <script type="module">
    import '@justinribeiro/toggle-tooltip/index.js';
 </script>
@@ -30,7 +38,7 @@ See other uses in `demo/index.html`.
 
 ## Development
 ```
-$ git clone
+$ git clone git@github.com:justinribeiro/toggle-tooltip.git
 $ cd toggle-tooltip
 $ yarn install
 $ yarn start

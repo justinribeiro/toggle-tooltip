@@ -17,7 +17,15 @@ import { state, property, query, customElement } from 'lit/decorators.js';
  * https://www.youtube.com/watch?v=PNH0RTB9alg
  *
  * ## Example
+ * Install the component:
+ * ```sh
+ * npm i @justinribeiro/toggle-tooltip
+ * # or
+ * yarn add @justinribeiro/toggle-tooltip
  * ```
+ *
+ * Fire it up:
+ * ```html
  * <script type="module">
  *   import '@justinribeiro/toggle-tooltip/index.js';
  * </script>
@@ -33,7 +41,7 @@ import { state, property, query, customElement } from 'lit/decorators.js';
  *
  * ## Development
  * ```
- * $ git clone
+ * $ git clone git@github.com:justinribeiro/toggle-tooltip.git
  * $ cd toggle-tooltip
  * $ yarn install
  * $ yarn start
