@@ -1,6 +1,13 @@
 # toggle-tooltip
 
-An accessible, fast, and WCAG 2.1 compliant toggle style tooltip using role=status.
+An accessible, fast, and WCAG 2.1 compliant toggle style tooltip web component using role=status.
+
+## Features
+1. WCAG 2.1 compliant:
+2. Fast: no jank repaint (turn on paint flashing in DevTools...nada)
+3. Screen reader friendly (interaction model allows explicit feedback)
+4. Supports optional hover (which is also compliant with WCAG 1.4.3)
+5. Basic styling with CSS custom properties
 
 ## Demo /  Screen Reader
 To see the tooltip in action within JAWS 2020, see
@@ -11,12 +18,25 @@ https://www.youtube.com/watch?v=PNH0RTB9alg
 <script type="module">
    import '@justinribeiro/toggle-tooltip/index.js';
 </script>
-<toggle-tooltip label="Tooltip for adjacent">
+<toggle-tooltip>
   ⓘ
   <span slot="tooltip">
     I'm a tooltip!
   </span>
 </toggle-tooltip>
+```
+
+See other uses in `demo/index.html`.
+
+## Development
+```
+$ git clone
+$ cd toggle-tooltip
+$ yarn install
+$ yarn start
+
+# run the tests
+$ yarn test
 ```
 
 ## Properties
