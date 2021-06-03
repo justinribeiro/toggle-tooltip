@@ -1,0 +1,94 @@
+{
+  "name": "@justinribeiro/toggle-tooltip",
+  "version": "1.0.0",
+  "description": "An accessible, fast, and WCAG 2.1 compliant toggle style tooltip web component using role=status.",
+  "author": "Justin Ribeiro <justin@justinribeiro.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:justinribeiro/toggle-tooltip.git"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
+    "build": "tsc",
+    "build:prod": "yarn node ./tools/build/index.js",
+    "prepublish": "tsc",
+    "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
+    "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
+    "test": "tsc && wtr --coverage",
+    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
+    "docs:ce": "yarn wca analyze \"src/**/*.{js,ts}\" --outFile custom-element.json",
+    "docs:md": "yarn wca analyze \"src/**/*.{js,ts}\" --outFile README.md"
+  },
+  "dependencies": {
+    "lit": "^2.0.0-rc.2",
+    "tslib": "^2.2.0"
+  },
+  "devDependencies": {
+    "@open-wc/eslint-config": "^4.3.0",
+    "@open-wc/testing": "^2.5.33",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "@web/dev-server": "^0.1.17",
+    "@web/test-runner": "^0.12.20",
+    "@web/test-runner-commands": "^0.5.0",
+    "@web/test-runner-playwright": "^0.8.6",
+    "concurrently": "^5.3.0",
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^7.2.0",
+    "fs-extra": "^10.0.0",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.4",
+    "web-component-analyzer": "^1.1.6"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "@open-wc/eslint-config",
+      "eslint-config-prettier"
+    ],
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error"
+      ],
+      "import/no-unresolved": "off",
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "ignorePackages": true
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "keywords": [
+    "web component",
+    "lit",
+    "wcag",
+    "ada"
+  ]
+}

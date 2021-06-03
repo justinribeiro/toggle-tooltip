@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes">
+  <meta charset="utf-8">
+  <style>
+    body {
+      background: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #demo {
+      position: relative;
+    }
+
+    #grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    #right-align {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    span, p {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+  <h1>&lt;toggle-tooltip&gt; Demo</h1>
+  <section>
+    <h1>Test Edge Alignment</h1>
+    <div id="grid">
+      <div id="left-align">
+        <toggle-tooltip label="More Info: Left Edge Test">ⓘ
+          <span slot=tooltip>I am a sample tooltip stuck to the left edge. I should not bleed the overflow to the left.</span>
+        </toggle-tooltip>
+
+        <button>A button that is not a tooltip</button>
+      </div>
+      <div id="right-align">
+        <toggle-tooltip label="More Info: Right Edge with Hover Test" hover>ⓘ
+          <span slot=tooltip>Tooltip Test: I am a sample tooltip stuck to the right edge. I should not bleed the overflow to the right.</span>
+        </toggle-tooltip>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h1>Test Inline</h1>
+    <p>I am a paragraph with a tooltip.
+      <toggle-tooltip label="Tooltip for adjacent">ⓘ
+        <span slot=tooltip>Good News, I'm inside a paragraph! I have a <a href="#">link</a> and you can tab to me without closing me!</span>
+      </toggle-tooltip>
+    </p>
+  </section>
+  <section>
+  <h2>
+    Test Within Heading
+    <toggle-tooltip>ⓘ
+      <span slot=tooltip>I'm inside a heading element and my button reads out properly for AT heading jumps</span>
+    </toggle-tooltip>
+  </h2>
+  <p>The tooltip is inside the heading element and does not take the base style within the slot.</p>
+  </section>
+  <section>
+    <h2>Verify SVG in default slot</h2>
+    <p>You can pretty much put anything you want into the default slot so much as it is not an interactive component.</p>
+    <toggle-tooltip>
+      <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+      </svg>
+      <span slot=tooltip>Tooltip Inject: I'm an SVG in the default slot and I work great!</span>
+    </toggle-tooltip>
+  </section>
+
+  <script type="module">
+    import '../dist/src/index.js';
+  </script>
+</body>
+</html>
