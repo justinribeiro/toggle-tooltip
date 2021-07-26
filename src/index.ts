@@ -64,7 +64,6 @@ import { state, property, query, customElement } from 'lit/decorators.js';
  * @cssprop [--toggle-tooltip-button-background-color=transparent]
  * @cssprop [--toggle-tooltip-button-padding=0]
  */
-@customElement('toggle-tooltip')
 export class ToggleTooltip extends LitElement {
   static styles = css`
     :host {
@@ -381,6 +380,9 @@ export class ToggleTooltip extends LitElement {
     `;
   }
 }
+
+// you $#%^& suck ts-jest and ts-node and all your %^&*()
+!window.customElements.get('toggle-tooltip') ? window.customElements.define('toggle-tooltip', ToggleTooltip) : null;
 
 declare global {
   interface HTMLElementTagNameMap {
