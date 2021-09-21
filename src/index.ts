@@ -9,7 +9,7 @@ import { state, property, query } from 'lit/decorators.js';
  * 1. WCAG 2.1 compliant:
  * 2. Fast: no jank repaint (turn on paint flashing in DevTools...nada)
  * 3. Screen reader friendly (interaction model allows explicit feedback)
- * 4. Supports optional hover (which is also compliant with WCAG 1.4.3)
+ * 4. Supports optional hover (which is also compliant with WCAG 1.4.13)
  * 5. Basic styling with CSS custom properties
  *
  * ## Demo /  Screen Reader

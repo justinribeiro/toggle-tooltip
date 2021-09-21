@@ -1,6 +1,6 @@
 {
   "name": "@justinribeiro/toggle-tooltip",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An accessible, fast, and WCAG 2.1 compliant toggle style tooltip web component using role=status.",
   "author": "Justin Ribeiro <justin@justinribeiro.com>",
   "repository": {

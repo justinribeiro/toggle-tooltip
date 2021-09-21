@@ -6,7 +6,7 @@ A small (8KB), accessible, fast, and WCAG 2.1 compliant toggle style tooltip web
 1. WCAG 2.1 compliant:
 2. Fast: no jank repaint (turn on paint flashing in DevTools...nada)
 3. Screen reader friendly (interaction model allows explicit feedback)
-4. Supports optional hover (which is also compliant with WCAG 1.4.3)
+4. Supports optional hover (which is also compliant with WCAG 1.4.13)
 5. Basic styling with CSS custom properties
 
 ## Demo /  Screen Reader
@@ -25,7 +25,7 @@ yarn add @justinribeiro/toggle-tooltip
 If you want the paste-and-go version, you can simply load it via CDN:
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/toggle-tooltip@1.0.2/dist/index.js">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/toggle-tooltip@1.0.3/dist/index.js">
 ```
 
 ## Usage
