@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { html, css, LitElement } from 'lit';
-import { state, property, query, customElement } from 'lit/decorators.js';
+import { state, property, query } from 'lit/decorators.js';
 
 /**
  * An accessible, fast, and WCAG 2.1 compliant toggle style tooltip web component using role=status.
@@ -16,14 +16,22 @@ import { state, property, query, customElement } from 'lit/decorators.js';
  * To see the tooltip in action within JAWS 2020, see
  * https://www.youtube.com/watch?v=PNH0RTB9alg
  *
- * ## Example
+ * ## Install with Tools
  * Install the component:
  * ```sh
  * npm i @justinribeiro/toggle-tooltip
  * # or
  * yarn add @justinribeiro/toggle-tooltip
  * ```
+ * ## Install with CDN
  *
+ * If you want the paste-and-go version, you can simply load it via CDN:
+ *
+ * ```html
+ * <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/toggle-tooltip@1.0.2/dist/index.js">
+ * ```
+ *
+ * ## Usage
  * Fire it up:
  * ```html
  * <script type="module">
@@ -94,7 +102,7 @@ export class ToggleTooltip extends LitElement {
       cursor: pointer;
     }
 
-    div[role=status] {
+    div[role='status'] {
       position: absolute;
       z-index: 2;
       border: var(--toggle-tooltip-status-border);
@@ -124,21 +132,20 @@ export class ToggleTooltip extends LitElement {
       that readout is correct (particularly for JAWS 2020+, which has issues
       reading the role=status when brought back to the viewport)
     */
-    div[role=status]:focus {
-       outline: none;
+    div[role='status']:focus {
+      outline: none;
     }
 
-    :host([show]) div[role=status] {
+    :host([show]) div[role='status'] {
       opacity: 1;
       transform: var(--int-tooltip-transform);
     }
 
     @media (prefers-reduced-motion) {
-      div[role=status] {
+      div[role='status'] {
         transition: none;
       }
     }
-
   `;
 
   /**
@@ -189,10 +196,10 @@ export class ToggleTooltip extends LitElement {
   @query('button') __tooltipButton!: HTMLButtonElement;
 
   private KEYCODE = Object.freeze({
-    'ESC': 'Escape',
-    'ENTER': 'Enter',
-    'SPACE': 'Space',
-    'TAB': 'Tab'
+    ESC: 'Escape',
+    ENTER: 'Enter',
+    SPACE: 'Space',
+    TAB: 'Tab',
   });
 
   connectedCallback() {
@@ -262,7 +269,7 @@ export class ToggleTooltip extends LitElement {
       // in the component focus (particularly in cases where there is
       // interactive content within the <slot>)
       // eslint-disable-next-line array-callback-return
-      const found = event.composedPath().find((i) => {
+      const found = event.composedPath().find(i => {
         if (i === this) {
           return true;
         }
@@ -279,7 +286,7 @@ export class ToggleTooltip extends LitElement {
   /**
    * Handle the mouseover action by opening the tooltip
    */
-  private  __handleMouseOver(): void {
+  private __handleMouseOver(): void {
     this.open();
   }
 
@@ -302,7 +309,7 @@ export class ToggleTooltip extends LitElement {
       this.close();
     } else {
       this.open();
-     }
+    }
   }
 
   /**
@@ -324,10 +331,11 @@ export class ToggleTooltip extends LitElement {
     // Run some checks to see where we are in the DOM for the positioning
     // This errs hard on conservative with some safety checks to reduce the need
     // to do width last revs
-    const isButtonLeftWeighted = (buttonRect.x - (tooltipRect.width / 2)) < 0
-      || windowWidth < 390;
-    const isButtonTopWeighted = (buttonRect.y - tooltipRect.height) < 0;
-    const isButtonRightWeighted = (windowWidth - buttonRect.x - (tooltipRect.width / 2)) < 0;
+    const isButtonLeftWeighted =
+      buttonRect.x - tooltipRect.width / 2 < 0 || windowWidth < 390;
+    const isButtonTopWeighted = buttonRect.y - tooltipRect.height < 0;
+    const isButtonRightWeighted =
+      windowWidth - buttonRect.x - tooltipRect.width / 2 < 0;
 
     // There is a very high likelihood that we're:
     //   a) on a very small screen (< 320px)
@@ -341,7 +349,7 @@ export class ToggleTooltip extends LitElement {
     // the edge case.
     let screenEdgePadding: number;
     if (windowWidth < 360) {
-      screenEdgePadding = ((windowWidth - tooltipRect.width) / 2);
+      screenEdgePadding = (windowWidth - tooltipRect.width) / 2;
     } else {
       // hacky-ish 1rem
       screenEdgePadding = 16;
@@ -353,22 +361,33 @@ export class ToggleTooltip extends LitElement {
     } else if (isButtonRightWeighted) {
       translateX = `translateX(${-(tooltipRect.width - screenEdgePadding)}px)`;
     } else {
-      translateX = `translateX(${-(tooltipRect.width / 2) + buttonRect.width}px)`;
+      translateX = `translateX(${
+        -(tooltipRect.width / 2) + buttonRect.width
+      }px)`;
     }
 
     // Second, check if we have enough space to open to the top (preferred) or
     // if we have to shift to the bottom
     if (isButtonTopWeighted) {
       // go low
-      translateY = `translateY(${buttonRect.y - tooltipRect.y + buttonRect.height}px)`
+      translateY = `translateY(${
+        buttonRect.y - tooltipRect.y + buttonRect.height
+      }px)`;
     } else {
-      translateY = `translateY(${-(buttonRect.y - tooltipRect.y + tooltipRect.height)}px)`;
+      translateY = `translateY(${-(
+        buttonRect.y -
+        tooltipRect.y +
+        tooltipRect.height
+      )}px)`;
     }
 
     // This sets the CSS custom prop against the _local_ instance of the
     // component; this won't bleed the scope, and don't set this to :root
     // otherwise you'll have stuff scattered all over
-    this.style.setProperty('--int-tooltip-transform', `${translateX} ${translateY}`);
+    this.style.setProperty(
+      '--int-tooltip-transform',
+      `${translateX} ${translateY}`
+    );
   }
 
   render() {
@@ -376,16 +395,19 @@ export class ToggleTooltip extends LitElement {
       <button @click="${this.__toggleTooltip}" aria-label="${this.label}">
         <slot></slot>
       </button>
-      <div role="status" tabIndex="-1"><slot name="tooltip"></slot></div>
+      <div role="status" tabindex="-1"><slot name="tooltip"></slot></div>
     `;
   }
 }
 
 // you $#%^& suck ts-jest and ts-node and all your %^&*()
-!window.customElements.get('toggle-tooltip') ? window.customElements.define('toggle-tooltip', ToggleTooltip) : null;
+// eslint-disable-next-line no-unused-expressions
+!window.customElements.get('toggle-tooltip')
+  ? window.customElements.define('toggle-tooltip', ToggleTooltip)
+  : null;
 
 declare global {
   interface HTMLElementTagNameMap {
-    "toggle-tooltip": ToggleTooltip,
+    'toggle-tooltip': ToggleTooltip;
   }
 }

@@ -22,6 +22,8 @@ execSync(
   `yarn wca analyze "publish/**/*.{js,ts}" --outFile ./publish/README.md`
 );
 
+execSync(`yarn rollup -c`);
+
 // Copy the package.json to the publish dir
 fs.copySync(`${projectRoot}/package.json`, `${publishRoot}/package.json`);
 

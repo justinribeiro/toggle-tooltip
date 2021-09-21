@@ -1,6 +1,6 @@
 # toggle-tooltip
 
-An accessible, fast, and WCAG 2.1 compliant toggle style tooltip web component using role=status.
+A small (8KB), accessible, fast, and WCAG 2.1 compliant toggle style tooltip web component using role=status.
 
 ## Features
 1. WCAG 2.1 compliant:
@@ -13,13 +13,22 @@ An accessible, fast, and WCAG 2.1 compliant toggle style tooltip web component u
 To see the tooltip in action within JAWS 2020, see
 https://www.youtube.com/watch?v=PNH0RTB9alg
 
-## Example
+## Install with Tools
 Install the component:
 ```sh
 npm i @justinribeiro/toggle-tooltip
 # or
 yarn add @justinribeiro/toggle-tooltip
 ```
+## Install with CDN
+
+If you want the paste-and-go version, you can simply load it via CDN:
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/toggle-tooltip@1.0.2/dist/index.js">
+```
+
+## Usage
 
 Fire it up:
 ```html
