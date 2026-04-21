@@ -1,3 +1,5 @@
+# Development moved to Codeberg: https://codeberg.org/justinribeiro/toggle-tooltip
+
 # toggle-tooltip
 
 A small (8KB), accessible, fast, and WCAG 2.1 compliant toggle style tooltip web component using role=status.
